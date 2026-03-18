@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Load & Go Oklahoma | Junk Removal – Norman, Moore, Goldsby, Noble, Blanchard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rust: #C0392B;
+      --rust-dark: #922B21;
+      --amber: #E67E22;
+      --amber-light: #F39C12;
+      --cream: #FDF6EC;
+      --charcoal: #1C1C1C;
+      --mid: #4A4A4A;
+      --light: #F5EFE6;
+      --white: #FFFFFF;
+      --border: #E8D8C4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--charcoal);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Alfa Slab One', serif;
+      color: var(--amber);
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+    .nav-logo span { color: var(--white); }
+    .nav-cta {
+      background: var(--rust);
+      color: var(--white);
+      border: none; border-radius: 6px;
+      padding: 0.55rem 1.2rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--rust-dark); }
+
+    /* ─── HERO ────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--charcoal);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* dirt texture overlay */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: 
+        radial-gradient(ellipse at 20% 60%, rgba(192,57,43,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 30%, rgba(230,126,34,0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* road stripe */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 120px;
+      background: repeating-linear-gradient(to bottom, var(--amber-light) 0, var(--amber-light) 24px, transparent 24px, transparent 36px);
+      opacity: 0.35;
+    }
+
+    .hero-eyebrow {
+      color: var(--amber);
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.1s forwards;
+    }
+
+    .hero h1 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: clamp(3rem, 10vw, 7rem);
+      line-height: 1;
+      color: var(--white);
+      opacity: 0;
+      animation: fadeUp 0.7s 0.25s forwards;
+    }
+    .hero h1 span { color: var(--rust); }
+
+    .hero-sub {
+      margin-top: 1.4rem;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: #C8BEB2;
+      max-width: 540px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.45s forwards;
+    }
+
+    .hero-buttons {
+      margin-top: 2.4rem;
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.6s forwards;
+    }
+
+    .btn-primary {
+      background: var(--rust);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--rust-dark); transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--amber);
+      border: 2px solid var(--amber);
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { background: var(--amber); color: var(--charcoal); transform: translateY(-2px); }
+
+    .hero-badge {
+      margin-top: 3rem;
+      display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.75s forwards;
+    }
+    .badge-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: #AAA;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .badge-item .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--amber);
+      display: inline-block;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTION BASE ────────────────────────── */
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Alfa Slab One', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--charcoal);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .section-body {
+      color: var(--mid);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    /* ─── SERVICES ────────────────────────────── */
+    .services { background: var(--light); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 2rem;
+      border: 2px solid var(--border);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--rust);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { border-color: var(--rust); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .service-card h3 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+      color: var(--charcoal);
+    }
+    .service-card p {
+      color: var(--mid);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+    .service-list {
+      margin-top: 0.8rem;
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.3rem;
+    }
+    .service-list li {
+      font-size: 0.9rem;
+      color: var(--mid);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .service-list li::before {
+      content: '✓';
+      color: var(--rust);
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+
+    /* ─── HOW IT WORKS ────────────────────────── */
+    .how {
+      background: var(--charcoal);
+      color: var(--white);
+    }
+    .how .section-title { color: var(--white); }
+    .how .section-body { color: #AAA; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .step {
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .step-num {
+      width: 56px; height: 56px;
+      background: var(--rust);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Alfa Slab One', serif;
+      font-size: 1.4rem;
+      color: var(--white);
+      margin: 0 auto 1.2rem;
+    }
+    .step h3 {
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      color: var(--amber);
+    }
+    .step p {
+      font-size: 0.92rem;
+      color: #999;
+      line-height: 1.6;
+    }
+
+    /* ─── PRICING ─────────────────────────────── */
+    .pricing { background: var(--cream); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .price-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      transition: border-color 0.25s, transform 0.25s, background 0.25s, box-shadow 0.25s;
+      position: relative;
+      cursor: default;
+    }
+    .price-card:hover {
+      border-color: var(--amber);
+      background: var(--amber);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(230,126,34,0.25);
+    }
+    .price-card:hover .price-label { color: rgba(255,255,255,0.85); }
+    .price-card:hover .price-amount { color: var(--white); }
+    .price-card:hover .price-note { color: rgba(255,255,255,0.85); }
+    .price-card:hover .price-tooltip { opacity: 1; transform: translateY(0); }
+
+    /* featured badge — top border accent only, no red background */
+    .price-card.featured { border-color: var(--rust); border-top-width: 5px; }
+    .price-card.featured:hover { border-color: var(--amber); border-top-width: 5px; }
+
+    .price-label {
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.8rem;
+      transition: color 0.25s;
+    }
+    .price-amount {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 2.4rem;
+      color: var(--charcoal);
+      line-height: 1;
+      transition: color 0.25s;
+    }
+    .price-note {
+      font-size: 0.85rem;
+      color: var(--mid);
+      margin-top: 0.4rem;
+      line-height: 1.5;
+      transition: color 0.25s;
+    }
+
+    /* Tooltip that slides up on hover */
+    .price-tooltip {
+      margin-top: 1rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.4);
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.55;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.25s, transform 0.25s;
+      font-weight: 600;
+    }
+
+    .pricing-disclaimer {
+      margin-top: 1.5rem;
+      text-align: center;
+      color: var(--mid);
+      font-size: 0.9rem;
+    }
+
+    /* ─── SERVICE AREA ────────────────────────── */
+    .area { background: var(--light); }
+
+    .towns {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      margin-top: 2rem;
+    }
+    .town-tag {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 100px;
+      padding: 0.55rem 1.3rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .town-tag:hover { border-color: var(--rust); background: var(--rust); color: var(--white); }
+    .town-tag .pin { color: var(--rust); font-size: 1rem; }
+    .town-tag:hover .pin { color: var(--white); }
+
+    /* ─── CTA / ESTIMATE FORM ─────────────────── */
+    .cta-section {
+      background: var(--rust);
+      text-align: center;
+      padding: 5rem 1.5rem;
+    }
+    .cta-section h2 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+    .cta-section > .container > p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .estimate-form {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: left;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 520px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+    .form-group label {
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--charcoal);
+      letter-spacing: 0.5px;
+    }
+    .form-group label .optional {
+      font-weight: 600;
+      color: #999;
+      font-size: 0.78rem;
+      margin-left: 0.3rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 0.7rem 0.9rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+      background: var(--cream);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--rust);
+      box-shadow: 0 0 0 3px rgba(192,57,43,0.12);
+      background: var(--white);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--rust);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+    .form-submit:hover { background: var(--rust-dark); transform: translateY(-2px); }
+
+    .form-footer-note {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      color: #999;
+    }
+    .form-footer-note a { color: var(--rust); text-decoration: none; font-weight: 700; }
+
+    /* Success message */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .form-success .success-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .form-success h3 {
+      font-family: 'Alfa Slab One', serif;
+      font-size: 1.6rem;
+      color: var(--charcoal);
+      margin-bottom: 0.6rem;
+    }
+    .form-success p { color: var(--mid); font-size: 0.95rem; line-height: 1.6; }
+
+    .cta-phone {
+      display: inline-block;
+      background: var(--white);
+      color: var(--rust);
+      font-family: 'Alfa Slab One', serif;
+      font-size: 2rem;
+      padding: 0.7rem 2.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: transform 0.2s;
+      letter-spacing: 1px;
+    }
+    .cta-phone:hover { transform: scale(1.04); }
+
+    .cta-sub {
+      margin-top: 1.2rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+    }
+
+    /* ─── PHOTO UPLOAD ────────────────────────── */
+    .photo-upload-area {
+      border: 2.5px dashed var(--border);
+      border-radius: 10px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      background: var(--cream);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+    }
+    .photo-upload-area:hover,
+    .photo-upload-area.dragover {
+      border-color: var(--rust);
+      background: #FFF5F4;
+    }
+    .photo-upload-area input[type="file"] {
+      position: absolute; inset: 0;
+      opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    }
+    .upload-icon { font-size: 2rem; margin-bottom: 0.4rem; }
+    .upload-text {
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--charcoal);
+      margin-bottom: 0.2rem;
+    }
+    .upload-subtext {
+      font-size: 0.78rem;
+      color: #999;
+    }
+
+    /* Preview thumbnails */
+    .photo-previews {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+    .photo-thumb {
+      width: 72px; height: 72px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      position: relative;
+    }
+    .thumb-wrap {
+      position: relative;
+      width: 72px; height: 72px;
+    }
+    .thumb-wrap img {
+      width: 72px; height: 72px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      display: block;
+    }
+    .thumb-remove {
+      position: absolute;
+      top: -6px; right: -6px;
+      width: 20px; height: 20px;
+      background: var(--rust);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 0.65rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      line-height: 1;
+    }
+    footer {
+      background: var(--charcoal);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: #666;
+      font-size: 0.88rem;
+    }
+    footer .footer-logo {
+      font-family: 'Alfa Slab One', serif;
+      color: var(--amber);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    footer .footer-logo span { color: var(--white); }
+    footer p { line-height: 1.8; }
+
+    /* ─── STICKY PHONE BAR (mobile) ───────────── */
+    .sticky-bar {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: var(--rust);
+      padding: 1rem;
+      text-align: center;
+    }
+    .sticky-bar a {
+      color: var(--white);
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .sticky-bar { display: block; }
+      body { padding-bottom: 60px; }
+      .steps { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Load&amp;<span>Go</span> Oklahoma</div>
+  <a class="nav-cta" href="#contact">Get a Free Estimate</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Norman · Moore · Goldsby · Noble · Blanchard</p>
+  <h1>Load &amp; <span>Go</span><br>Oklahoma</h1>
+  <p class="hero-sub">Friendly, fast junk removal for your home, yard, or job site. Text us a photo and we'll get you a quote fast — usually same day.</p>
+  <div class="hero-buttons">
+    <a href="#contact" class="btn-primary">📋 Get a Free Estimate</a>
+    <a href="#services" class="btn-secondary">See What We Take</a>
+  </div>
+  <div class="hero-badge">
+    <span class="badge-item"><span class="dot"></span> Same-Day Available</span>
+    <span class="badge-item"><span class="dot"></span> Local &amp; Friendly</span>
+    <span class="badge-item"><span class="dot"></span> No Hidden Fees</span>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <p class="section-label">What We Do</p>
+    <h2 class="section-title">We Haul Just About Anything</h2>
+    <p class="section-body">You point, we load. No need to drag it to the curb or rent a dumpster. We come to you and take it all away.</p>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-icon">🚛</span>
+        <h3>Junk Removal</h3>
+        <p>Clearing out a garage, spare room, or whole property? We haul it all — fast and without the hassle.</p>
+        <ul class="service-list">
+          <li>Furniture &amp; mattresses</li>
+          <li>Electronics &amp; TVs</li>
+          <li>Garage &amp; shed cleanouts</li>
+          <li>Estate &amp; moving cleanouts</li>
+          <li>Construction debris</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🌪️</span>
+        <h3>Yard Waste &amp; Storm Cleanup</h3>
+        <p>Oklahoma weather can leave a mess. We handle storm debris, downed limbs, and yard cleanups so you don't have to.</p>
+        <ul class="service-list">
+          <li>Downed tree limbs &amp; brush</li>
+          <li>Storm debris removal</li>
+          <li>Fence &amp; shed debris</li>
+          <li>Dirt, rock &amp; gravel</li>
+          <li>General yard waste</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🧊</span>
+        <h3>Appliance Removal</h3>
+        <p>Old fridge taking up space? Washer finally gave out? We'll haul it off safely and responsibly.</p>
+        <ul class="service-list">
+          <li>Refrigerators &amp; freezers</li>
+          <li>Washers &amp; dryers</li>
+          <li>Stoves &amp; dishwashers</li>
+          <li>Water heaters</li>
+          <li>Air conditioners</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <p class="section-label">Simple Process</p>
+    <h2 class="section-title">Here's How It Works</h2>
+    <p class="section-body">We keep it simple. No complicated scheduling, no surprise fees — just show us the junk and we'll take it from there.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Text Us a Photo</h3>
+        <p>Snap a picture of what needs to go. We'll reply with an upfront price — fast.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Pick a Time</h3>
+        <p>We offer same-day and next-day appointments. We work around your schedule.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>We Show Up</h3>
+        <p>We'll text you when we're on the way. No 4-hour windows, no no-shows.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>It's Gone</h3>
+        <p>We load everything up and haul it away. We even sweep up before we leave.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <p class="section-label">Pricing</p>
+    <h2 class="section-title">Straightforward Prices</h2>
+    <p class="section-body">We price by load size — you only pay for what we haul. No hourly rates, no hidden fees. Text us a photo for an exact quote.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <p class="price-label">1–2 Items</p>
+        <p class="price-amount">$65</p>
+        <p class="price-note">Starting rate for a single item or a couple of small pieces</p>
+        <div class="price-tooltip">✔ Old couch or recliner<br>✔ Single appliance pickup<br>✔ A few boxes of junk<br>✔ Mattress or box spring<br>📱 Text a photo for exact price</div>
+      </div>
+      <div class="price-card featured">
+        <p class="price-label">Most Popular</p>
+        <p class="price-amount">$100–$150</p>
+        <p class="price-note">One full truck bed — great for a room or garage cleanout</p>
+        <div class="price-tooltip">✔ Full bedroom or living room<br>✔ Garage or shed cleanout<br>✔ Appliances + extra junk<br>✔ Yard waste haul-off<br>📱 Text a photo for exact price</div>
+      </div>
+      <div class="price-card">
+        <p class="price-label">Two Loads</p>
+        <p class="price-amount">$175–$225</p>
+        <p class="price-note">Bigger jobs — multiple rooms, full garage, yard cleanup</p>
+        <div class="price-tooltip">✔ Multiple rooms cleared<br>✔ Full garage + extra debris<br>✔ Storm cleanup & brush<br>✔ Small rental property turnover<br>📱 Text a photo for exact price</div>
+      </div>
+      <div class="price-card">
+        <p class="price-label">Large Trailer</p>
+        <p class="price-amount">$250–$350</p>
+        <p class="price-note">Major cleanouts, property cleanups, estate hauls</p>
+        <div class="price-tooltip">✔ Full estate or home cleanout<br>✔ Foreclosure / eviction cleanout<br>✔ Large construction debris<br>✔ Whole property haul-off<br>📱 Text a photo for exact price</div>
+      </div>
+    </div>
+
+    <p class="pricing-disclaimer">⚠️ Appliance surcharge may apply · Exact quote given before any work begins · No obligation to proceed</p>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="area" id="area">
+  <div class="container">
+    <p class="section-label">We Come to You</p>
+    <h2 class="section-title">We Serve Your Neighborhood</h2>
+    <p class="section-body">We're local to this area and proud of it. If you're in Cleveland County and surrounding communities, we've got you covered — including the smaller towns others skip over.</p>
+
+    <div class="towns">
+      <div class="town-tag"><span class="pin">📍</span> Norman</div>
+      <div class="town-tag"><span class="pin">📍</span> Moore</div>
+      <div class="town-tag"><span class="pin">📍</span> Goldsby</div>
+      <div class="town-tag"><span class="pin">📍</span> Noble</div>
+      <div class="town-tag"><span class="pin">📍</span> Blanchard</div>
+      <div class="town-tag"><span class="pin">📍</span> Washington</div>
+      <div class="town-tag"><span class="pin">📍</span> Purcell</div>
+      <div class="town-tag"><span class="pin">📍</span> Tuttle</div>
+      <div class="town-tag"><span class="pin">📍</span> And surrounding areas</div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTIMATE FORM -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <h2>Get a Free Estimate</h2>
+    <p>Fill out the form below and we'll get back to you fast — usually same day. No obligation, no pressure.</p>
+
+    <div class="estimate-form">
+      <form action="https://formspree.io/f/mvzwdpzn" method="POST">
+
+        <!-- Hidden fields -->
+        <input type="hidden" name="_subject" value="New Estimate Request — Load & Go Oklahoma" />
+        <input type="hidden" name="_next" value="" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">Your Name</label>
+            <input type="text" id="fname" name="Name" placeholder="John Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="fphone">Phone Number</label>
+            <input type="tel" id="fphone" name="Phone" placeholder="(405) 555-0000" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="femail">Email Address <span class="optional">(optional)</span></label>
+          <input type="email" id="femail" name="email" placeholder="you@example.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="fcity">Your City / Town</label>
+          <input type="text" id="fcity" name="City" placeholder="e.g. Goldsby, Noble, Blanchard..." required />
+        </div>
+
+        <div class="form-group">
+          <label for="fdesc">What Needs to Be Removed?</label>
+          <textarea id="fdesc" name="Description" placeholder="Describe what you need hauled away — furniture, appliances, yard debris, cleanout, etc. The more detail the better!" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Photos <span class="optional">(optional — helps us give a more accurate estimate)</span></label>
+          <div class="photo-upload-area" id="uploadArea">
+            <input type="file" id="fphoto" accept="image/*" multiple onchange="handlePhotos(this)" />
+            <div class="upload-icon">📷</div>
+            <p class="upload-text">Tap to add photos or drag &amp; drop</p>
+            <p class="upload-subtext">JPG, PNG, HEIC · Up to 5 photos</p>
+          </div>
+          <div class="photo-previews" id="photoPreviews"></div>
+        </div>
+
+        <button type="submit" class="form-submit">📋 Submit Free Estimate Request</button>
+
+        <p class="form-footer-note">
+          Prefer to call or text? Reach us at <a href="tel:+14054443398">(405) 444-3398</a> anytime.
+        </p>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Load&amp;<span>Go</span> Oklahoma</div>
+  <p>
+    Junk Removal · Appliance Hauling · Yard &amp; Storm Cleanup<br>
+    Norman · Moore · Goldsby · Noble · Blanchard &amp; Surrounding Areas<br><br>
+    © 2026 Load &amp; Go Oklahoma · All Rights Reserved
+  </p>
+</footer>
+
+<!-- STICKY MOBILE BAR -->
+<div class="sticky-bar">
+  <a href="tel:+14054443398">📞 Tap to Call or Text — (405) 444-3398</a>
+</div>
+
+<script>
+  let selectedFiles = [];
+
+  function handlePhotos(input) {
+    const newFiles = Array.from(input.files);
+    const combined = [...selectedFiles, ...newFiles];
+    selectedFiles = combined.slice(0, 5);
+    renderPreviews();
+  }
+
+  function renderPreviews() {
+    const container = document.getElementById('photoPreviews');
+    container.innerHTML = '';
+    selectedFiles.forEach((file, index) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'thumb-wrap';
+        wrap.innerHTML = `
+          <img src="${e.target.result}" alt="Photo ${index + 1}" />
+          <button class="thumb-remove" onclick="removePhoto(${index})" title="Remove">✕</button>
+        `;
+        container.appendChild(wrap);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function removePhoto(index) {
+    selectedFiles.splice(index, 1);
+    renderPreviews();
+  }
+
+  // Drag and drop
+  document.addEventListener('DOMContentLoaded', () => {
+    const uploadArea = document.getElementById('uploadArea');
+    if (uploadArea) {
+      uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+      });
+      uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+      uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+        const combined = [...selectedFiles, ...files];
+        selectedFiles = combined.slice(0, 5);
+        renderPreviews();
+      });
+    }
+  });
+
+  async function submitForm() {
+    const name  = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    const email = document.getElementById('femail').value.trim();
+    const city  = document.getElementById('fcity').value.trim();
+    const desc  = document.getElementById('fdesc').value.trim();
+
+    if (!name || !phone || !city || !desc) {
+      alert('Please fill out all required fields before submitting.');
+      return;
+    }
+
+    const btn = document.querySelector('.form-submit');
+    btn.textContent = '⏳ Sending...';
+    btn.disabled = true;
+
+    const formData = new FormData();
+    formData.append('Name', name);
+    formData.append('Phone', phone);
+    formData.append('Email', email || 'Not provided');
+    formData.append('City', city);
+    formData.append('Description', desc);
+    formData.append('Photos', selectedFiles.length > 0 ? `${selectedFiles.length} photo(s) attached` : 'No photos uploaded');
+    formData.append('_replyto', email || '');
+    formData.append('_subject', 'New Estimate Request — Load & Go Oklahoma');
+
+    try {
+      const response = await fetch('https://formspree.io/f/mvzwdpzn', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        document.getElementById('estimateForm').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (err) {
+      btn.textContent = '📋 Submit Free Estimate Request';
+      btn.disabled = false;
+      alert("Something went wrong sending your request. Please call or text us directly at (405) 444-3398 and we'll get you taken care of!");
+    }
+  }
+</script>
+</body>
+</html>
